@@ -438,11 +438,12 @@ setInterval(updateBodyBackground, 60 * 1000);
         balancesDiv.innerHTML = "";
 
         for (let balance of filteredBalances) {
-          const div = document.createElement("div");
-          div.className = "balance";
-          div.textContent = `${balance.account} owns ${balance.balance}, ~${Math.floor((balance.balance / filteredBalances.length) * 100)}% out of ${filteredBalances.length} unique holders`;
-          balancesDiv.appendChild(div);
-        }
+  const totalTokens = filteredBalances.reduce((sum, balance) => sum + balance.balance, 0);
+  const div = document.createElement("div");
+  div.className = "balance";
+  div.textContent = `${balance.account} owns ${balance.balance}, ~${((balance.balance / totalTokens) * 100).toFixed(2)}% out of ${filteredBalances.length} holders`;
+  balancesDiv.appendChild(div);
+}
 
         // Change the h1 content back to "NFT Richlist"
         h1.textContent = "NFT Richlist";
@@ -461,7 +462,7 @@ setInterval(updateBodyBackground, 60 * 1000);
     const distributionPercentage = ((totalSupply / maxSupply) * 100).toFixed(2);
 
     // Update the h1 title with the name of the NFT
-    h1.textContent = data.name;
+    h1.textContent = `${data.name}`;
 
     // Update the Total Distribution card with the calculated distribution percentage
     document.querySelector("#total-distribution-percent-card p").textContent = `${distributionPercentage}%`;
