@@ -334,7 +334,7 @@
       async function fetchTokenBalances() {
         // Change the h1 content to "Searching Mirror Node"
         const h1 = document.getElementsByTagName("h1")[0];
-        h1.textContent = "Searching Mirror Node";
+        h1.textContent = "Searching";
 
         // Fetch the balances
         const tokenID = document.getElementById("tokenID").value;
@@ -368,7 +368,7 @@
         for (let balance of filteredBalances) {
           const div = document.createElement("div");
           div.className = "balance";
-          div.textContent = `Account: ${balance.account}, Balance: ${balance.balance}`;
+          div.textContent = `${balance.account} - Owns ${balance.balance}`;
           balancesDiv.appendChild(div);
         }
 
