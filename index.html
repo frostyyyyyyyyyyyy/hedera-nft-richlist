@@ -300,7 +300,7 @@ z-index: 3;
       }
       function getColorForTime() {
     const now = new Date();
-    const hours = 5//now.getHours() + now.getMinutes() / 60;
+    const hours = now.getHours() + now.getMinutes() / 60;
 
     const colors = [
     {time: 0, colors: ["#070c26", "#000000"]}, // Midnight
