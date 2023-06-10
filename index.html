@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hedera NFT Richlist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+
+
+body {
+        font-family: "Roboto Mono", monospace;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        background-color: #000000;
+        background-repeat: no-repeat;
+
+     
+        z-index: 1;
+
+      }
+
+      .filter {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: url(./grain.png);
+        background-repeat: no-repeat;
+        background-size: 120% 120%;
+        opacity: .2;
+z-index: 3;
+
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        color: #fff;
+        z-index: 4;
+      }
+
+      .input-wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-top: 30px;
+        width: 60%;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      input,
+      button {
+        border: none;
+        background: none;
+        color: rgb(255, 255, 255);
+        outline: none;
+        border-bottom: 2px solid rgb(255, 255, 255);
+        font-size: 1.2rem;
+        z-index: 4;
+      }
+
+      ::-webkit-input-placeholder {
+        color: rgb(255, 255, 255);
+        opacity: 1;
+      }
+
+      ::-moz-placeholder {
+        color: rgb(255, 255, 255);
+        opacity: 1;
+      }
+
+      :-ms-input-placeholder {
+        color: rgb(255, 255, 255);
+        opacity: 1;
+      }
+
+      ::-ms-input-placeholder {
+        color: rgb(255, 255, 255);
+        opacity: 1;
+      }
+
+      ::placeholder {
+        color: rgb(255, 255, 255);
+        opacity: 1;
+      }
+
+      button {
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .balances {
+        text-align: left;
+        color: #fff;
+        line-height: 30px;
+        font-size: 1.5rem;
+        margin-top: 20px;
+        width: 60%;
+        height: 400px;
+        overflow: auto;
+        border: 0.1px solid;
+        border-color: #ffffff8b;
+        padding: 20px;
+        padding-left: 100px;
+        border-radius: 20px;
+        background-color: #ffffff00;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        position: relative;
+        z-index: 4;
+        box-shadow: 2px 5px 40px #00000021;
+      }
+
+      .background-log {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        font-size: 1rem;
+        overflow: auto;
+        z-index: 2;
+        line-height: 1.5;
+      }
+
+      .balances p,
+      .background-log div {
+        margin: 0;
+      }
+
+      .card-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: center;
+        width: 60%;
+        margin-top: 30px;
+
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.0);
+        padding: 15px;
+        border-radius: 10px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        /* border: 0.5px solid; */
+        border-color: #ffffff8b;
+        margin: 10px;
+        margin-bottom: 0px;
+        /* -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px); */
+        z-index: 4;
+      }
+
+      .card p {
+        font-size: 1.5rem;
+      }
+      .card h2 {
+        margin: 10px;
+      }
+      @media (max-width: 900px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+        .card p {
+          font-size: 0.8rem;
+        }
+      
+        .input-wrapper {
+          width: 80%;
+          margin-bottom: 10px;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+          flex-direction: column;
+        }
+
+        input,
+        button {
+          width: 100%;
+          margin-bottom: 10px;
+          font-size: 1rem;
+        }
+
+ 
+        .card-container {
+          width: 100%;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+        }
+
+        .card {
+          width: 30%; /* Reduced width to fit three cards side by side */
+          margin: 10px 1%; /* Adjusted margins for some spacing */
+          font-size: 0.8rem; /* Reduced font size to fit in the smaller card */
+          padding: 5px;
+        }
+
+        .card h2 {
+          margin: 10px 0; /* Reduced margins to fit in the smaller card */
+          font-size: .9rem; /* Reduced font size to fit in the smaller card */
+        }
+
+        .balances {
+          font-size: 1.2rem;
+          height: 600px; /* Increase if you want a longer scrolling list */
+          padding: 10px;
+          width: 90%;
+          margin-bottom: 10px;
+        }
+
+        .card-container {
+          width: 90%;
+          margin-top: 30px;
+        }
+
+        .card-container,
+        .balances {
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box; /* This makes sure padding is included in the width */
+        }
+
+        button {
+          margin-top: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>NFT Richlist</h1>
+    <div class="input-wrapper">
+      <input type="text" id="tokenID" placeholder="Enter token ID..." />
+      <button onclick="fetchTokenBalances()">Fetch</button>
+    </div>
+
+    <div class="card-container">
+      <div class="card" id="unique-holder-percent-card">
+        <h2>Unique Holders</h2>
+        <p>...</p>
+      </div>
+      <div class="card" id="total-distribution-percent-card">
+        <h2>Total Distribution</h2>
+        <p>...</p>
+      </div>
+      <div class="card" id="average-holdings-card">
+        <h2>Average Holdings</h2>
+        <p>...</p>
+      </div>
+    </div>
+
+    <div class="balances" id="balances"></div>
+    <div class="background-log" id="backgroundLog"></div>
+<div class="filter"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+
+    <script>
+   function interpolateColor(color1, color2, factor) {
+        const result = color1.slice();
+        for (let i = 0; i < 3; i++) {
+            result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+        }
+        return result;
+      }
+
+      function interpolateColors(color1, color2, steps) {
+        const stepFactor = 1 / (steps - 1),
+            interpolatedColorArray = [];
+
+        color1 = color1.match(/\d+/g).map(Number);
+        color2 = color2.match(/\d+/g).map(Number);
+
+        for(let i = 0; i < steps; i++) {
+            interpolatedColorArray.push(interpolateColor(color1, color2, stepFactor * i));
+        }
+        return interpolatedColorArray;
+      }
+      function getColorForTime() {
+    const now = new Date();
+    const hours = 5//now.getHours() + now.getMinutes() / 60;
+
+    const colors = [
+    {time: 0, colors: ["#070c26", "#000000"]}, // Midnight
+    {time: 3, colors: ["#09144b", "#000011"]}, // Early Morning (3 AM)
+    {time: 6, colors: ["#020024", "#014470"]}, // Morning (6 AM)
+    {time: 10, colors: ["#60a0ea", "#e3e3e3"]}, // Midday (10 AM)
+    {time: 14, colors: ["#60a0ea", "#f7e0c8"]}, // Afternoon (2 PM)
+    {time: 18, colors: ["#3e7fc9", "#e1c485"]}, // Evening (6 PM)
+    {time: 20, colors: ["#020024", "#014470"]}, // Evening (8 PM)
+    {time: 22, colors: ["#09144b", "#000000"]}, // Late evening (10 PM)
+];
+
+
+    let prev = colors[colors.length - 1];
+    let next = colors[0];
+
+    for (let i = 0; i < colors.length; i++) {
+        if (hours < colors[i].time) {
+            next = colors[i];
+            break;
+        }
+        prev = colors[i];
+    }
+
+    const ratio = (hours - prev.time) / (next.time - prev.time);
+
+    let color1 = chroma.mix(prev.colors[0], next.colors[0], ratio);
+
+    color1 = `rgba(${Math.floor(color1._rgb[0])}, ${Math.floor(color1._rgb[1])}, ${Math.floor(color1._rgb[2])}, ${Math.floor(color1._rgb[3])})`
+
+    let color2 = chroma.mix(prev.colors[1], next.colors[1], ratio);
+    color2 = `rgba(${Math.floor(color2._rgb[0])}, ${Math.floor(color2._rgb[1])}, ${Math.floor(color2._rgb[2])}, ${Math.floor(color2._rgb[3])})`
+
+
+    return [color1, color2];
+}
+
+function updateBodyBackground() {
+    const [color1, color2] = getColorForTime();
+
+    document.body.style.backgroundImage = `linear-gradient(180deg, ${color1} 40%, ${color2} 100%)`;
+
+    // Also set body's background-color and .background-log's color to color1
+    document.body.style.backgroundColor = color1;
+  document.querySelector('.background-log').style.color = color1;
+}
+
+updateBodyBackground();
+// And also set an interval to update it every minute
+setInterval(updateBodyBackground, 60 * 1000);
+
+
+
+
+      async function getBalances(urlToFetch) {
+        try {
+          // Fetch the balances
+          const response = await fetch(urlToFetch);
+          const data = await response.json();
+
+          // Print each response to the background as it comes
+          const backgroundLogDiv = document.getElementById("backgroundLog");
+          const backgroundDiv = document.createElement("div");
+          backgroundDiv.textContent = JSON.stringify(data, null, 2);
+          // Insert each new log at the top of the backgroundLogDiv
+          backgroundLogDiv.insertBefore(
+            backgroundDiv,
+            backgroundLogDiv.firstChild
+          );
+
+          // Return the balances and the next link (if it exists)
+          const nextLink = data.links && data.links.next;
+          const balances = data.balances;
+
+          if (nextLink) {
+            const nextUrl = new URL(nextLink, urlToFetch).href;
+            const nextBalances = await getBalances(nextUrl);
+            return balances.concat(nextBalances);
+          } else {
+            return balances;
+          }
+        } catch (error) {
+          // Log and throw the error
+          console.error("Failed to fetch the balances:", error);
+          throw error;
+        }
+      }
+
+      function calcUniqueHoldersPercentage(balances) {
+        return (
+          (balances.length /
+            balances.reduce((sum, balance) => sum + balance.balance, 0)) *
+          100
+        ).toFixed(2);
+      }
+
+      function calcAverageHoldings(balances) {
+        return (
+          balances.reduce((sum, balance) => sum + balance.balance, 0) /
+          balances.length
+        ).toFixed(2);
+      }
+
+      async function fetchTokenBalances() {
+        // Change the h1 content to "Searching Mirror Node"
+        const h1 = document.getElementsByTagName("h1")[0];
+        h1.textContent = "Searching";
+
+        // Fetch the balances
+        const tokenID = document.getElementById("tokenID").value;
+        const balances = await getBalances(
+          `https://mainnet-public.mirrornode.hedera.com/api/v1/tokens/${tokenID}/balances`
+        );
+
+        // Remove balances with zero and sort in descending order
+        const filteredBalances = balances
+          .filter((balance) => balance.balance > 0)
+          .sort((a, b) => b.balance - a.balance);
+
+        // Calculate metrics and update the cards
+        document
+          .getElementById("unique-holder-percent-card")
+          .querySelector("p").textContent = `${calcUniqueHoldersPercentage(
+          filteredBalances
+        )}%`;
+        document
+          .getElementById("total-distribution-percent-card")
+          .querySelector("p").textContent = "100%";
+        document
+          .getElementById("average-holdings-card")
+          .querySelector("p").textContent =
+          calcAverageHoldings(filteredBalances);
+
+        // Display the balances
+        const balancesDiv = document.getElementById("balances");
+        balancesDiv.innerHTML = "";
+
+        for (let balance of filteredBalances) {
+          const div = document.createElement("div");
+          div.className = "balance";
+          div.textContent = `${balance.account} - Owns ${balance.balance}`;
+          balancesDiv.appendChild(div);
+        }
+
+        // Change the h1 content back to "NFT Richlist"
+        h1.textContent = "NFT Richlist";
+      }
+
+
+
+
+    </script>
+  </body>
+</html>
