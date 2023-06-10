@@ -15,8 +15,9 @@ body {
         font-family: "Roboto Mono", monospace;
         margin: 0;
         padding: 0;
-        height: 100vh;
-        overflow: hidden;
+        min-height: 100vh;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-y: auto;   /* Allows vertical scrolling if necessary */
         display: flex;
         justify-content: center;
         align-items: center;
